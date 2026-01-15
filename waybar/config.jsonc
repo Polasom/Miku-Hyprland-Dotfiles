@@ -1,0 +1,108 @@
+{
+    "reload_style_on_change":true,
+    "layer": "top",
+    "spacing":4,
+    "position":"top",
+    "height":30,
+    "width":1900,
+    "margin-top":10,
+    "modules-left": ["custom/notification","tray"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["group/systeminfo","group/tools","clock"],
+    //module left
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "persistent-workspaces": {
+            "*": [ 1,2,3,4,5 ]
+        }
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": " ",
+        "on-click": "swaync-client -t -sw",
+        "escape": true
+    },
+    "tray": {
+        "icon-size": 14,
+        "spacing": 10
+    },
+    //module right
+    "network": {
+        "format-wifi": "",
+        "format-ethernet":"",
+        "format-disconnected": "",
+        "tooltip-format-disconnected": "Error",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} 🖧 ",
+        "on-click": "nm-connection-editor"
+    },
+    //Group of systemInfo
+    "group/systeminfo":{
+	"orientation":"horizontal",
+	"modules":["cpu","memory","temperature"]
+    },
+    "cpu": {
+        "interval": 10,
+        "format": " {max_frequency}% ",
+        "max-length": 10
+    },
+    "memory": {
+        "interval": 30,
+        "format": " {percentage}% ",
+        "max-length": 10
+    },
+     "temperature": {
+        "format": " {temperatureC}°C"
+    },
+    "clock": {
+        "format": "{:%I:%M:%S %p} ",
+        "interval": 1,
+	"tooltip-format": "<span size='11000' font_desc='JetBrains Mono Nerd Font'>{calendar}</span>",
+        "calendar": {
+            "mode"          : "month",
+            "on-scroll"     : 1,
+            "format": {
+                "months":     "<span size='12000' color='#39c5bb'><b>{}</b></span>",
+                "days":       "<span color='#ffffff'><b>{}</b></span>",
+                "weekdays":   "<span color='#39c5bb'><b>{}</b></span>",
+                "today":    "<span color='#39c5bb'><b>{}</b></span>"       
+	    }
+        },
+        "actions": {
+	    "smooth-scrolling-threshold":5.0,
+	    "on-scroll-down":"shift_down",
+	    "on-scroll-up":"shift_up",
+            "on-click-right": "shift_down",
+            "on-click": "shift_up"
+        }
+    },
+    //tools
+    "group/tools":{
+	"tooltip":false,
+	"orientation":"horizontal",
+	"modules":["custom/cliphist","custom/colorpicker","custom/pacman","network"]
+    },
+    "custom/cliphist":{
+	"tooltip":false,
+	"format":" ",
+	"on-click":"cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+    },
+    "custom/colorpicker": {
+	"tooltip":false,
+        "format": "󰃉 ",
+        "return-type": "json",
+        "interval": "once",
+        "on-click": "hyprpicker",
+        "signal": 1
+    },
+    "custom/pacman": {
+	"tooltip":false,
+        "format": "󰅢 ",
+        "interval": 30,
+        "exec": "checkupdates | wc -l",
+        "exec-if": "exit 0",
+        "on-click": "kitty sh -c 'yay -Syu; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
+        "signal": 8,
+        "tooltip": false
+    }
+}

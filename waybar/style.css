@@ -1,0 +1,130 @@
+/* -----------------------------------------------------------------------------
+ * Hatsune Miku Theme - GTK Subset Compliant (Modified for Glare Effect)
+ * -------------------------------------------------------------------------- */
+
+* {
+    font-family: "JetBrains Mono Nerd Font", "Font Awesome 6 Free", sans-serif;
+    font-weight: bold;
+    min-height: 0;
+    /* 基础除蓝 */
+    outline-style: none;
+    box-shadow: none;
+}
+
+/* 1. Main Floating Bar */
+window#waybar {
+    background-color: rgba(26, 27, 38, 0.75); 
+    border-bottom: 2px solid #39c5bb;
+    border-radius: 12px; 
+    color: #ffffff;
+}
+
+/* 2. Unified Pill Backgrounds */
+#workspaces, #tray, #systeminfo, #tools, #clock, #custom-notification {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px; 
+    margin: 4px 5px;
+    border: 1px solid rgba(57, 197, 187, 0.2);
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+#tools:hover,#systeminfo:hover{
+    border-color: rgba(57, 197, 187, 0.8);
+}
+/* --- 炫光效果添加区 --- */
+/* 针对特定组件添加外发光，模糊度设为 4px 以匹配 4px 的 margin，防止切边变方 */
+#systeminfo, #tools, #clock, #custom-notification,#workspaces,#tray {
+    box-shadow: 0 0 1px 1px rgba(57, 197, 187, 0.4);
+}
+/* --------------------- */
+
+/* 3. Workspaces - 修复蓝边错误 */
+#workspaces {
+    padding: 0 8px;
+}
+
+#workspaces button {
+    padding: 0 10px;
+    color: #39c5bb; 
+    border-radius: 8px; 
+    margin: 4px 2px;
+    background-color: transparent;
+    border: none;
+    transition: all 0.2s cubic-bezier(.55,-0.68,.48,1.68);
+}
+
+#workspaces button.active {
+    background-color: #39c5bb;
+    color: #1a1b26;
+    padding: 0 17px;
+}
+
+/* 悬停不再使用 box-shadow，改用边框变色模拟，彻底杜绝 Junk Error */
+#workspaces button:hover {
+    color: #85f2ea;
+}
+#workspaces button.active:hover {
+    color: #1a1b26;
+}
+
+/* 模拟点击：下压位移 */
+#workspaces button:active {
+    margin-top: 6px;
+    margin-bottom: 2px;
+}
+
+/* 4. Tools & System Info - 图标默认绿色 */
+#systeminfo, #tools {
+    padding: 0 12px; 
+}
+
+
+#cpu, #memory, #temperature,
+#custom-colorpicker, #custom-pacman, #custom-cliphist, #network {
+    color: #39c5bb; 
+    transition: color 0.3s ease;
+}
+
+#cpu:hover, #memory:hover, #temperature:hover,
+#custom-colorpicker:hover, #custom-pacman:hover, #custom-cliphist:hover, 
+#network:hover {
+    color: #85f2ea;
+}
+
+/* 严格保留原始 Padding */
+#custom-cliphist { padding: 0 5px 0 2px; }
+#network { padding: 0 2px 0 7px; }
+
+/* 5. Clock & Notification - 交互色彩分级 */
+#clock, #custom-notification {
+    color: #39c5bb; 
+    padding: 0 15px;
+}
+
+#custom-notification {
+    padding: 0 5px 0 10px;
+}
+
+#clock:hover, #custom-notification:hover {
+   /* background-color: rgba(57, 197, 187, 0.1);*/
+    border-color: rgba(57, 197, 187, 0.8);
+    color: #85f2ea;
+}
+
+/* 模拟点击：下压位移 */
+#clock:active, #custom-notification:active {
+    margin-top: 6px;
+    margin-bottom: 2px;
+    background-color: rgba(57, 197, 187, 0.2);
+}
+
+/* 6. Tray */
+#tray { padding: 0 10px; }
+
+/* 7. Tooltips */
+tooltip {
+    background: rgba(26, 27, 38, 0.95);
+    border: 2px solid #39c5bb;
+    border-radius: 10px;
+    margin: 50px;
+}
