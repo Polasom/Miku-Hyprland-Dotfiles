@@ -1,0 +1,128 @@
+/**
+ * ROFI Color theme: Miku Transparent (Optimized)
+ */
+
+* {
+    /* --- 颜色定义 --- */
+    miku-teal:          #39c5bb;
+    /* 更加透明的黑色背景 */
+    miku-bg-trans:      rgba(15, 15, 20, 0.85); 
+    /* 未选中项：比背景稍深一点的颜色，并强制关闭默认色 */
+    miku-item-bg:       rgba(0, 0, 0, 0.3);
+    
+    miku-text-dim:      #a0a0a0;
+    miku-text-bright:   #ffffff;
+
+    /* 强制重置所有基础颜色，防止默认黄白色干扰 */
+    background-color:   transparent;
+    text-color:         @miku-text-bright;
+}
+
+window {
+    background-color:   @miku-bg-trans;
+    
+    /* --- 极致圆润轮廓 --- */
+    border:             2px;
+    border-color:       @miku-teal;
+    border-radius:      24px;         /* 显著增加圆角，使其非常圆润 */
+    
+    /* --- 进一步内缩宽度 --- */
+    width:              30%;          /* 从 35% 缩小到 30%，让左右更内缩  */
+    
+    location:           center;
+    anchor:             center;
+}
+entry {
+    background-color:   transparent;
+    /* 强制使用 Miku 绿，确保输入时颜色亮丽  */
+    text-color:         @miku-teal;  
+    placeholder:        "搜索...";
+    placeholder-color:   @miku-text-dim;
+    vertical-align:     0.5;
+}
+mainbox {
+    /* 增加左右内边距 (20px)，让内部列表相对于外框进一步向内缩进 */
+    padding:            15px 25px;    
+    background-color:   transparent;
+    children:           [ inputbar, listview, mode-switcher ];
+}
+
+inputbar {
+    /* 输入框也同步变得更圆润 */
+    background-color:   @miku-item-bg;
+    margin:             0px 0px 12px 0px;
+    padding:            10px 15px;
+    border-radius:      15px;         /* 输入框圆角 */
+    children:           [ prompt, entry ];
+}
+prompt {
+    text-color:         @miku-teal;
+}
+
+/* --- 列表项：修复默认颜色问题 --- */
+listview {
+    fixed-height:       true;       /* 对应 config.rasi 的设置 [cite: 45] */
+    lines:              6;          /* 减少显示行数，缩小纵向体积 */
+    spacing:            4px;
+    scrollbar:          false;
+}
+
+element {
+    /* 列表项的圆角也随之增加 */
+    background-color:   @miku-item-bg;
+    padding:            8px 12px;
+    border-radius:      12px;         /* 单个应用的圆角 */
+    margin:             3px 0px;
+}
+/* 重点：显式定义所有状态，覆盖系统默认值 */
+element normal.normal,
+element alternate.normal {
+    background-color:   @miku-item-bg;
+    text-color:         @miku-text-dim;
+}
+
+element selected.normal {
+    background-color:   @miku-teal;
+    text-color:         #1a1c23;
+}
+
+element-icon {
+    size:               20px;       /* 缩小图标 */
+    padding:            0px 8px 0px 0px;
+}
+
+element-text {
+    text-color:         inherit;
+    vertical-align:     0.5;
+}
+/* --- 针对 Window 模式激活窗口的修复 --- */
+element normal.active,
+element alternate.active {
+    background-color:   rgba(57, 197, 187, 0.2); /* 使用透明 Miku 绿作为背景 */
+    text-color:         @miku-teal;              /* 文字使用 Miku 绿 */
+}
+
+element selected.active {
+    background-color:   @miku-teal;              /* 选中激活项时使用实色 */
+    text-color:         #1a1c23;                 /* 文字变为深色背景色 */
+}
+/* --- 底部模式切换 --- */
+mode-switcher {
+    spacing:            15px;
+    margin:             10px 5px 0px 5px;
+}
+
+button {
+    padding:            8px;
+    background-color:   @miku-item-bg;
+    text-color:         @miku-text-dim;
+    /* 这里的圆角需要足够大才能显得圆润  */
+    border-radius:      15px;       
+    /* 添加边框让它更有轮廓感 */
+    border:             1px;
+    border-color:       transparent;
+}
+button selected {
+    background-color:   @miku-teal;
+    text-color:         #1a1c23;
+}

@@ -1,0 +1,78 @@
+configuration {
+    /* --- 基础设置 --- */
+    modi:                       "drun,run,window";
+    show-icons:                 true;
+    display-dmenu:            " 󰅍  Clipboard ";
+    display-drun:               "   Apps ";
+    display-run:                "   Run ";
+    display-window:             " 󰕰  Window ";
+    drun-display-format:        "{icon} {name}";
+    
+/* --- 第一步：全键位解绑 (彻底清除默认干扰) --- */
+    kb-primary-paste:            "";
+    kb-secondary-paste:          "";
+    kb-clear-line:               "";
+    kb-move-front:               "";
+    kb-move-end:                 "";
+    kb-move-word-back:           "";
+    kb-move-word-forward:        "";
+    kb-move-char-back:           "";
+    kb-move-char-forward:        "";
+    kb-remove-word-back:         "";
+    kb-remove-word-forward:      "";
+    kb-remove-char-forward:      "";
+    kb-remove-char-back:         "BackSpace";
+    kb-remove-to-eol:            "";
+    kb-remove-to-sol:            "";
+    kb-accept-line:              "";
+    kb-accept-custom:            "";
+    kb-accept-entry:             "Return,KP_Enter";
+    kb-mode-next:                "";
+    kb-mode-previous:            "";
+    kb-row-left:                 "";
+    kb-row-right:                "";
+    kb-row-up:                   "Up";
+    kb-row-down:                 "Down";
+    kb-page-prev:                "";
+    kb-page-next:                "";
+    kb-row-first:                "";
+    kb-row-last:                 "";
+    kb-row-select:               "";
+    kb-screenshot:               "";
+    kb-ellipsize:                "";
+    kb-toggle-case-sensitivity:  "";
+    kb-toggle-sort:              "";
+    kb-cancel:                   "Escape";
+    kb-mode-complete:            "Tab";
+    kb-element-next:             "";
+    /* --- 鼠标操作逻辑 (已合并) --- */
+    hover-select:               false;           
+    me-select-entry:            "";             
+    me-accept-entry:            "MousePrimary"; 
+    mouse-wheel-up:             "ScrollUp";
+    mouse-wheel-down:           "ScrollDown";
+    scroll-method:              1;
+    fixed-height:               true;
+    fixed-num-lines:            true;
+
+    /* --- Vim 导航快捷键 (已合并) --- */
+    kb-page-prev:                "Page_Up,Control+u";
+    kb-page-next:                "Page_Down,Control+d";
+    kb-row-down:                "Down,Control+j";
+    kb-row-up:                  "Up,Control+k";
+    kb-mode-previous:           "Left,Control+h";
+    kb-mode-next:               "Right,Control+l";
+    
+    /* 习惯性映射与解除冲突 */
+    kb-accept-entry:            "Return,KP_Enter,Control+m";
+    kb-cancel:                  "Escape,Control+bracketleft";
+    kb-remove-to-eol:           ""; 
+
+    /* --- 窗口行为 --- */
+    terminal:                   "kitty";
+    sidebar-mode:               true;           
+    disable-history:            false;
+    hide-scrollbar:             true;
+}
+
+@import "miku.rasi"
